@@ -14,29 +14,37 @@ public class StatsService {
     }
 
     public int findTopSales(int[] stats) {
-        int currentMax = stats[0];
+        int maxMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
         for (int stat : stats) {
-            if(stat > currentMax) {
-                currentMax = stat;
+            // stats[minMonth] - продажи в месяце maxMonth
+            // stat - продажи в рассматриваемом месяце
+            if (stat >= stats[maxMonth]) {
+                maxMonth = month;
             }
+            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
         }
-        return currentMax;
+        return maxMonth + 1;
     }
 
     public int findLowSales(int[] stats) {
-        int currentMin = stats[0];
+        int minMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
         for (int stat : stats) {
-            if(stat < currentMin) {
-                currentMin = stat;
+            // stats[minMonth] - продажи в месяце minMonth
+            // stat - продажи в рассматриваемом месяце
+            if (stat <= stats[minMonth]) {
+                minMonth = month;
             }
+            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
         }
-        return currentMin;
+        return minMonth + 1;
     }
 
     public int minSalesMonth(int[] stats) {
         int minMonth = 0; // переменная для  рассчета количества месяцев, у которых продажи были ниже среднего
         for (long stat : stats) {
-            if (stat < calculateSum(stats) / stats.length) {
+            if (stat < calculateAverage(stats)) {
                 minMonth = minMonth + 1;
             }
         }
@@ -44,13 +52,13 @@ public class StatsService {
     }
 
     public int maxSalesMonth(int[] stats) {
-        int minMonth = 0; // переменная для  рассчета количества месяцев, у которых продажи были выше среднего
+        int maxMonth = 0; // переменная для  рассчета количества месяцев, у которых продажи были выше среднего
         for (long stat : stats) {
-            if (stat > calculateSum(stats) / stats.length) {
-                minMonth = minMonth + 1;
+            if (stat > calculateAverage(stats)) {
+                maxMonth = maxMonth + 1;
             }
         }
-        return minMonth;
+        return maxMonth;
     }
 }
 

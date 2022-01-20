@@ -30,7 +30,7 @@ class StatsServiceTest {
     void shouldFindTopSale() {
         StatsService service = new StatsService();
         int[] stats = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 20;
+        int expected = 8;
 
         int actual = service.findTopSales(stats);
         assertEquals(expected, actual);
@@ -40,7 +40,7 @@ class StatsServiceTest {
     void shouldFindLowSale() {
         StatsService service = new StatsService();
         int[] stats = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
-        int expected = 7;
+        int expected = 9;
 
         int actual = service.findLowSales(stats);
         assertEquals(expected, actual);
@@ -62,7 +62,7 @@ class StatsServiceTest {
         int[] stats = {8, 15, 13, 15, 17, 20, 19, 20, 7, 14, 14, 18};
         int expected = 5;
 
-        int actual = service.minSalesMonth(stats);
+        int actual = service.maxSalesMonth(stats);
         assertEquals(expected, actual);
     }
 }
