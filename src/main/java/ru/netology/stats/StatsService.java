@@ -43,8 +43,9 @@ public class StatsService {
 
     public int minSalesMonth(int[] stats) {
         int minMonth = 0; // переменная для  рассчета количества месяцев, у которых продажи были ниже среднего
+        int average = calculateAverage(stats);
         for (long stat : stats) {
-            if (stat < calculateAverage(stats)) {
+            if (stat < average) {
                 minMonth = minMonth + 1;
             }
         }
@@ -53,8 +54,9 @@ public class StatsService {
 
     public int maxSalesMonth(int[] stats) {
         int maxMonth = 0; // переменная для  рассчета количества месяцев, у которых продажи были выше среднего
+        int average = calculateAverage(stats);
         for (long stat : stats) {
-            if (stat > calculateAverage(stats)) {
+            if (stat > average) {
                 maxMonth = maxMonth + 1;
             }
         }
